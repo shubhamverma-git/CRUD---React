@@ -12,10 +12,9 @@ function Create() {
   const header = { "Access-Control-Allow-Origin": "*" };
 
   const handleSubmit = (e) => {
-    console.log("Warning");
     e.preventDefault();
     axios.post(
-      "https://crudcrud.com/api/defb8ca6ebce4e8c9a4ec219951d7637/formData",
+      "https://crudcrud.com/api/3838db2664cc4b8fb53b2fe8a2e3b28d/formData",
       {
         name: name,
         email: email,
@@ -32,54 +31,44 @@ function Create() {
       <div
         className={`d-flex justify-content-center mt-5 ${classes.form_container}`}
       >
-        <form>
+        <form className={classes.form}>
           <div className="mb-3">
-            <label for="userName" className="form-label">
+            <label htmlFor="userName" className="form-label">
               <h1>Full Name</h1>
             </label>
             <input
               type="text"
               onChange={(e) => setName(e.target.value)}
-              className="form-control"
+              className={`form-control ${classes.input}`}
               id="userName"
             />
           </div>
           <div className="mb-3">
-            <label for="userEmail" className="form-label">
+            <label htmlFor="userEmail" className="form-label">
               <h1>Email</h1>
             </label>
             <input
               type="email"
               onChange={(e) => setEmail(e.target.value)}
-              className="form-control"
+              className={`form-control ${classes.input}`}
               id="userEmail"
             />
           </div>
           <div className="mb-3">
-            <label for="userPhone" className="form-label">
+            <label htmlFor="userPhone" className="form-label">
               <h1>Contact Number</h1>
             </label>
             <input
               type="tel"
               onChange={(e) => setPhone(e.target.value)}
-              className="form-control"
+              className={`form-control ${classes.input}`}
               id="userPhone"
             />
-          </div>
-          <div className="mb-3 form-check">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              id="exampleCheck1"
-            />
-            <label className="form-check-label" for="exampleCheck1">
-              Check me out
-            </label>
           </div>
           <button
             type="submit"
             onClick={handleSubmit}
-            className="btn btn-primary"
+            className="btn btn-primary mt-5 "
           >
             Register
           </button>

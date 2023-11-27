@@ -2,22 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 function Read() {
-  const [data, setData] = useState([]);
-
-  function getAllData() {
-    axios
-      .get("https://crudcrud.com/api/defb8ca6ebce4e8c9a4ec219951d7637/formData")
-      .then((res) => {
-        console.log(res.data);
-        setData(res.data);
-      });
-  }
-
-  useEffect(() => {
-    getAllData();
-  }, [data]);
-
-  getAllData();
   return (
     <>
       <h1 className="bg-warning p-2">All Registrations</h1>
