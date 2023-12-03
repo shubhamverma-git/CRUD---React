@@ -13,6 +13,16 @@ function Read() {
       });
   }
 
+  const deleteItem = async (id) => {
+    console.log(id);
+    const res = await axios.delete(
+      `https://crudcrud.com/api/5cf2ba86a1934575b3a661e18dc71377/formData/${id}`
+    );
+    if (res?.status == 200) {
+      getData();
+    }
+  };
+
   useEffect(() => {
     getData();
     console.log("effect running");
@@ -32,12 +42,9 @@ function Read() {
             <th scope="col"></th>
           </tr>
         </thead>
-        {data.map((eachData) => {
-          {
-            console.log(eachData);
-          }
+        {data.map((eachData, idx) => {
           return (
-            <tbody>
+            <tbody key={idx}>
               <tr>
                 <th scope="row">{eachData?._id}</th>
                 <td>{eachData?.name}</td>
@@ -47,7 +54,12 @@ function Read() {
                   <button className="btn btn-success">Edit</button>
                 </td>
                 <td>
-                  <button className="btn btn-danger">Delete</button>
+                  <button
+                    onClick={() => deleteItem(eachData?._id)}
+                    className="btn btn-danger"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             </tbody>
