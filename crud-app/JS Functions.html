@@ -7,21 +7,35 @@
   </head>
   <body>
     <script>
-      const arr = [12, 34, 43, 25, 87, 98, 67, 55, 48, 78, 87];
-      const output = arr.map(double);
-      function double(x) {
-        return x * 2;
+      const arr = [1, 34, 43, 50, 87, 98, 67, 55, 48, 78, 92, 99];
+
+      function isOdd(x) {
+        return x % 2;
       }
+
+      const output = arr.filter(isOdd);
       document.write(output, "<br />");
 
-      const result = arr.map(triple);
-      function triple(x) {
-        return x * 3;
+      function isEven(x) {
+        return x % 2 === 0;
       }
+
+      const result = arr.filter(isEven);
       document.write(result, "<br />");
 
-      const binary = arr.map((x) => x.toString(2));
-      document.write(binary, "<br />");
+      function isGreater(x) {
+        return x > 50 || x % 2 === 0;
+      }
+
+      const res = arr.filter(isGreater);
+      document.write(res, "<br />");
+
+      function isSmaller(x) {
+        return (x < 50) & x % 2;
+      }
+
+      const response = arr.filter(isSmaller);
+      document.write(response, "<br />");
     </script>
   </body>
 </html>
