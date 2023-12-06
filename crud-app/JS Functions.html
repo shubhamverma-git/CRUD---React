@@ -8,34 +8,70 @@
   <body>
     <script>
       const arr = [1, 34, 43, 50, 87, 98, 67, 55, 48, 78, 92, 99];
-
-      function isOdd(x) {
-        return x % 2;
+      function findSum(arr) {
+        let sum = 0;
+        for (let i = 0; i < arr.length; i++) {
+          sum = sum + arr[i];
+        }
+        return sum;
       }
+      document.write(findSum(arr), "<br />");
+      console.log(findSum(arr));
 
-      const output = arr.filter(isOdd);
+      const output = arr.reduce(function (acc, curr) {
+        acc = acc + curr;
+        return acc;
+      }, 0);
       document.write(output, "<br />");
+      console.log(output);
 
-      function isEven(x) {
-        return x % 2 === 0;
+      function findMax(arr) {
+        let max = 0;
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] > max) {
+            max = arr[i];
+          }
+        }
+        return max;
       }
+      document.write(findMax(arr), "<br />");
+      console.log(findMax(arr));
 
-      const result = arr.filter(isEven);
-      document.write(result, "<br />");
+      const users = [
+        { firstName: "Narendra", lastName: "Modi", gender: "Male", age: 70 },
+        { firstName: "Donald", lastName: "Trump", gender: "Male", age: 50 },
+        { firstName: "Vladimir", lastName: "Putin", gender: "Male", age: 40 },
+        { firstName: "Georgia", lastName: "Meloni", gender: "Female", age: 80 },
+        { firstName: "Rahul", lastName: "Gandhi", gender: "Male", age: 65 },
+        { firstName: "Jyoti", lastName: "Scindia", gender: "Male", age: 40 },
+        { firstName: "Mamta", lastName: "Banerjee", gender: "Female", age: 65 },
+        {
+          firstName: "Priyanka",
+          lastName: "Gandhi",
+          gender: "Female",
+          age: 70,
+        },
+      ];
 
-      function isGreater(x) {
-        return x > 50 || x % 2 === 0;
-      }
-
-      const res = arr.filter(isGreater);
+      const res = users.map((x) => x.firstName + " " + x.lastName);
       document.write(res, "<br />");
+      console.log(res);
 
-      function isSmaller(x) {
-        return (x < 50) & x % 2;
-      }
+      const response = users.reduce(function (acc, curr) {
+        if (acc[curr.age]) {
+          acc[curr.age] = ++acc[curr.age];
+        } else {
+          acc[curr.age] = 1;
+        }
+        return acc;
+      }, {});
+      console.log(response, "<br />");
 
-      const response = arr.filter(isSmaller);
-      document.write(response, "<br />");
+      const ret = users
+        .filter((x) => x.age > 50)
+        .map((x) => x.firstName + " " + x.lastName + " " + x.age);
+      console.log(ret);
+      document.write(ret, "<br />");
     </script>
   </body>
 </html>
