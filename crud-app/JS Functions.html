@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const arr = [12, 34, 43, 25, 87, 98, 67, 55, 48, 78, 87];
+      const output = arr.map(double);
+      function double(x) {
+        return x * 2;
+      }
+      document.write(output, "<br />");
+
+      const result = arr.map(triple);
+      function triple(x) {
+        return x * 3;
+      }
+      document.write(result, "<br />");
+
+      const binary = arr.map((x) => x.toString(2));
+      document.write(binary, "<br />");
+    </script>
+  </body>
+</html>
