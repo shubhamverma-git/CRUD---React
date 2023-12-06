@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //function
+      const calculate = (a, b, operation) => {
+        return operation(a, b);
+      };
+
+      // 1st METHOD
+
+      // callback function
+      const add = (a, b) => a + b;
+      const subResult = calculate(8, 5, add);
+
+      // passing function as an argument
+      document.write(subResult, "<br />");
+
+      //2nd METHOD
+
+      // callback function
+      const minus = calculate(3, 4, function (num1, num2) {
+        return num1 - num2;
+      });
+
+      // passing function as an argument
+      document.write(minus);
+    </script>
+  </body>
+</html>
