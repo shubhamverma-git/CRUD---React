@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const seconds = new Date().getTime() / 1000;
+
+      setInterval(() => {
+        // prints out "2", meaning that the callback is not called immediately after 500 milliseconds.
+        document.write(`${new Date()} <br />`);
+      }, 4000);
+
+      while (true) {
+        if (new Date().getTime() / 1000 - seconds >= 2) {
+          document.write("Good, looped for 2 seconds <br />");
+          break;
+        }
+      }
+    </script>
+  </body>
+</html>
