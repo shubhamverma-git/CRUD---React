@@ -12,17 +12,23 @@
       const cart = ["Shoes", "Shirt", "Pants", "Jeans", "Kurta"];
 
       // this will send order ID
-      const promise = createOrder(cart);
-      console.log(promise);
+      createOrder(cart)
+        // Attaching callback function to this promise object so that function call the Proceed to Payment
 
-      // Attaching callback function to this promise object so that function call the Proceed to Payment
-      promise
         .then(function (orderId) {
           document.write(orderId);
-          // proceedToPayment(orderId);
+          return orderId;
         })
 
-        // Whenever we are creating promise function we should add catch statement always, it is vert mandatory.
+        .then(function (orderId) {
+          return proceedToPayment(orderId);
+        })
+
+        .then(function (paymentInfo) {
+          console.log(paymentInfo);
+        })
+        // Whenever we are creating promise function we should add catch statement always, it is very mandatory. And we can also adjust this catch statement where we want to check function and not.
+        // If we have to check error after proceedToPayment function then we have to write catch statement below that function and this statement work for all those function which are above to catch statement
         .catch(function (err) {
           console.log(err);
         });
@@ -48,11 +54,16 @@
         return pr;
       }
 
+      function proceedToPayment() {
+        return new Promise(function (resolve, reject) {
+          resolve("Payment Successful");
+        });
+      }
       function validateCart(cart) {
-        return false;
+        return true;
       }
 
-      // In this code we createOrder function(line: 15) created a promise object then JavaScript call this createOrder function(line: 24) and returns a promise. If there is no error then orderId go to callback function(line: 19)
+      // NOTE: Whenever we make promise chain we should always pass down data or promise to new promise using return keyword (line: 20), so that next function will get data or promise automatically (line: 23). And we can only pass data and promise in Promise chain
     </script>
   </body>
 </html>
