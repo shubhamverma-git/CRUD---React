@@ -16,10 +16,16 @@
       console.log(promise);
 
       // Attaching callback function to this promise object so that function call the Proceed to Payment
-      promise.then(function (orderId) {
-        document.write(orderId);
-        // proceedToPayment(orderId);
-      });
+      promise
+        .then(function (orderId) {
+          document.write(orderId);
+          // proceedToPayment(orderId);
+        })
+
+        // Whenever we are creating promise function we should add catch statement always, it is vert mandatory.
+        .catch(function (err) {
+          console.log(err);
+        });
 
       function createOrder(cart) {
         // creating promise and call the promise constructor
@@ -28,7 +34,7 @@
           // logic to validate cart
           if (!validateCart(cart)) {
             const err = new Error("Cart is not valid");
-            reject(err);
+            reject(err.message);
           }
 
           // logic to create order
@@ -43,7 +49,7 @@
       }
 
       function validateCart(cart) {
-        return true;
+        return false;
       }
 
       // In this code we createOrder function(line: 15) created a promise object then JavaScript call this createOrder function(line: 24) and returns a promise. If there is no error then orderId go to callback function(line: 19)
