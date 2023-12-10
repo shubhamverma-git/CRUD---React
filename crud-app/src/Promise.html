@@ -7,18 +7,46 @@
   </head>
   <body>
     <script>
-      const API_URL = "https://api.github.com/users/shubhamverma-git";
+      // Promise chaining
 
-      async function handlePromise() {
-        try {
-          const data = await fetch(API_URL);
-          const jsonValue = await data.json();
-          console.log(jsonValue);
-        } catch (err) {
-          console.log(err);
-        }
+      const cart = ["Shoes", "Shirt", "Pants", "Jeans", "Kurta"];
+
+      // this will send order ID
+      const promise = createOrder(cart);
+      console.log(promise);
+
+      // Attaching callback function to this promise object so that function call the Proceed to Payment
+      promise.then(function (orderId) {
+        document.write(orderId);
+        // proceedToPayment(orderId);
+      });
+
+      function createOrder(cart) {
+        // creating promise and call the promise constructor
+        const pr = new Promise(function (resolve, reject) {
+          // order ID
+          // logic to validate cart
+          if (!validateCart(cart)) {
+            const err = new Error("Cart is not valid");
+            reject(err);
+          }
+
+          // logic to create order
+          const orderId = "45678";
+          if (orderId) {
+            setTimeout(function () {
+              resolve(orderId);
+            }, 3000);
+          }
+        });
+        return pr;
       }
-      handlePromise();
+
+      function validateCart(cart) {
+        return true;
+      }
+
+      // In this code we createOrder function(line: 15) created a promise object then JavaScript call this createOrder function(line: 24) and returns a promise. If there is no error then orderId go to callback function(line: 19)
     </script>
   </body>
 </html>
