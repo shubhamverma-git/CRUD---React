@@ -21,10 +21,12 @@
         setTimeout(() => reject("P3 Fail"), 2000);
       });
 
-      Promise.race([p1, p2, p3])
+      Promise.any([p1, p2, p3])
         .then((res) => console.log(res))
         .catch((err) => {
           console.error(err);
+          // to create an array of errors
+          console.log(err.errors);
         });
     </script>
   </body>
