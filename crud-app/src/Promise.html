@@ -7,63 +7,23 @@
   </head>
   <body>
     <script>
-      // Promise chaining
+      const p1 = new Promise((resolve, reject) => {
+        setTimeout(() => resolve("P1 Success"), 4000);
+      });
 
-      const cart = ["Shoes", "Shirt", "Pants", "Jeans", "Kurta"];
+      const p2 = new Promise((resolve, reject) => {
+        // setTimeout(() => resolve("P2 Success"), 4000);
+        setTimeout(() => reject("P2 Fail"), 5000);
+      });
+      const p3 = new Promise((resolve, reject) => {
+        setTimeout(() => resolve("P3 Success"), 2000);
+      });
 
-      // this will send order ID
-      createOrder(cart)
-        // Attaching callback function to this promise object so that function call the Proceed to Payment
-
-        .then(function (orderId) {
-          document.write(orderId);
-          return orderId;
-        })
-
-        .then(function (orderId) {
-          return proceedToPayment(orderId);
-        })
-
-        .then(function (paymentInfo) {
-          console.log(paymentInfo);
-        })
-        // Whenever we are creating promise function we should add catch statement always, it is very mandatory. And we can also adjust this catch statement where we want to check function and not.
-        // If we have to check error after proceedToPayment function then we have to write catch statement below that function and this statement work for all those function which are above to catch statement
-        .catch(function (err) {
-          console.log(err);
+      Promise.all([p1, p2, p3])
+        .then((res) => console.log(res))
+        .catch((err) => {
+          console.error(err);
         });
-
-      function createOrder(cart) {
-        // creating promise and call the promise constructor
-        const pr = new Promise(function (resolve, reject) {
-          // order ID
-          // logic to validate cart
-          if (!validateCart(cart)) {
-            const err = new Error("Cart is not valid");
-            reject(err.message);
-          }
-
-          // logic to create order
-          const orderId = "45678";
-          if (orderId) {
-            setTimeout(function () {
-              resolve(orderId);
-            }, 3000);
-          }
-        });
-        return pr;
-      }
-
-      function proceedToPayment() {
-        return new Promise(function (resolve, reject) {
-          resolve("Payment Successful");
-        });
-      }
-      function validateCart(cart) {
-        return true;
-      }
-
-      // NOTE: Whenever we make promise chain we should always pass down data or promise to new promise using return keyword (line: 20), so that next function will get data or promise automatically (line: 23). And we can only pass data and promise in Promise chain
     </script>
   </body>
 </html>
